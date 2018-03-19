@@ -144,6 +144,7 @@ sched.start()
 
 
 # COMMAND HANDLER FUNCTION TO SEND TOP 20 POSTS TO USER
+@timeouts.wrapper
 def new20(bot,update):
     url = subreddit_url+'/new.json?limit=20'
     json_data=getLatestData(url)
@@ -152,6 +153,7 @@ def new20(bot,update):
     paginate_and_send(to_send,update)
 
 # COMMAND HANDLER FUNCTION TO SUBSCRIBE
+@timeouts.wrapper
 def subscribe(bot,update):
     conn = sqlite3.connect(mount_point+'subreddit_bot.db')
     c = conn.cursor()
@@ -168,6 +170,7 @@ def subscribe(bot,update):
 
 
 # COMMAND HANDLER FUNCTION TO UNSUBSCRIBE
+@timeouts.wrapper
 def unsubscribe(bot,update):
     conn = sqlite3.connect(mount_point + 'subreddit_bot.db')
     c = conn.cursor()
